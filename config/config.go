@@ -3,6 +3,13 @@ package config
 // Kafka 定义Kafka结构体
 type KafkaConfig struct {
 	Address string `ini:"address"`
+	//Topic string `ini:"topic"`
+	MaxSize int `ini:"chan_max_size"`
+}
+
+// Etcd 定义Etcd结构体
+type EtcdConfig struct {
+	Address string `ini:"address"`
 	Topic string `ini:"topic"`
 }
 
@@ -15,6 +22,7 @@ type TailLogConfig struct {
 type AppConfig struct {
 	KafkaConfig `ini:"kafka"`
 	TailLogConfig `ini:"tailLog"`
+	EtcdConfig `ini:"etcd"`
 }
 
 
