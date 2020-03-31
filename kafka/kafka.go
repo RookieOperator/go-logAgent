@@ -1,8 +1,9 @@
 package kafka
 
 import (
-	"fmt"
+	"code.rookieops.com/coolops/logAgent/logger"
 	"github.com/Shopify/sarama"
+	"strings"
 	"time"
 )
 
@@ -28,16 +29,23 @@ func SendToChan(topic, data string) {
 }
 
 // InitKafka kafka初始化函数
-func InitKafka(address []string, maxSize int) (err error) {
+func InitKafka(address string, maxSize int) (err error) {
+	// 对配置文件中的地址进行转换
+	var kafkaAddress = make([]string,0)
+	if strings.Contains(address,";"){
+		kafkaAddress = strings.Split(address,";")
+	}
+	kafkaAddress = append(kafkaAddress,address)
+
 	config := sarama.NewConfig()
 	config.Producer.RequiredAcks = sarama.WaitForAll          // 发送完数据需要leader和follow都确认
 	config.Producer.Partitioner = sarama.NewRandomPartitioner // 新选出一个partition
 	config.Producer.Return.Successes = true                   // 成功交付的消息将在success channel返回
 
 	// 连接kafka
-	client, err = sarama.NewSyncProducer(address, config)
+	client, err = sarama.NewSyncProducer(kafkaAddress, config)
 	if err != nil {
-		fmt.Println("producer closed, err:", err)
+		logger.SugarLogger.Errorf("producer closed, err:%s", err)
 		return
 	}
 	// 初始化dataChan
@@ -50,7 +58,6 @@ func InitKafka(address []string, maxSize int) (err error) {
 // SendMsgToKafka 发送消息到kafka
 func sendMsgToKafka() {
 	// 从channel中取日志信息发送到kafka
-	fmt.Println("开始发送消息到kafka")
 	for {
 		select {
 		case logConf := <-dataChan:
@@ -61,10 +68,10 @@ func sendMsgToKafka() {
 
 			pid, offset, err := client.SendMessage(msg)
 			if err != nil {
-				fmt.Println("send msg failed, err:", err)
+				logger.SugarLogger.Errorf("send msg failed, err:%s", err)
 				return
 			}
-			fmt.Printf("pid:%v offset:%v\n", pid, offset)
+			logger.SugarLogger.Infof("send msg to kafka success. pid:%v offset:%v\n",pid, offset)
 		default:
 			time.Sleep(time.Millisecond * 50)
 		}

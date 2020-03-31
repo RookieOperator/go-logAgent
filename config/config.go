@@ -18,19 +18,21 @@ type TailLogConfig struct {
 	FileName string `ini:"filename"`
 }
 
+// LogConfig 定义LogConfig结构体
+type LogConfig struct {
+	Path string `ini:"path"`
+	MaxSize int
+	MaxBackups int
+	MaxAge int
+	Compress bool
+}
+
 //
 type AppConfig struct {
 	KafkaConfig `ini:"kafka"`
 	TailLogConfig `ini:"tailLog"`
 	EtcdConfig `ini:"etcd"`
+	LogConfig `ini:"log"`
 }
 
 
-//// LoadConfig 加载配置文件
-//func LoadConfig(cfg *AppConfig) (cfg *AppConfig,err error){
-//	err = ini.MapTo(cfg,"./config/config.ini")
-//	if err != nil {
-//		return nil,err
-//	}
-//	return cfg,nil
-//}

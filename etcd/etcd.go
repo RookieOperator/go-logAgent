@@ -1,9 +1,9 @@
 package etcd
 
 import (
+	"code.rookieops.com/coolops/logAgent/logger"
 	"context"
 	"encoding/json"
-	"fmt"
 	"go.etcd.io/etcd/clientv3"
 	"time"
 )
@@ -25,7 +25,7 @@ func InitEtcd(address []string) (err error) {
 	})
 	if err != nil {
 		// handle error!
-		fmt.Printf("connect to etcd failed, err:%v\n", err)
+		logger.SugarLogger.Errorf("connect to etcd failed, err:%v\n", err)
 		return
 	}
 	return
@@ -37,7 +37,7 @@ func GetConfFromEtcd(key string) (logentry []*LogEntry,err error) {
 	resp, err := cli.Get(ctx, key)
 	cancel()
 	if err != nil {
-		fmt.Printf("get from etcd failed, err:%v\n", err)
+		logger.SugarLogger.Errorf("get from etcd failed, err:%v\n", err)
 		return
 	}
 	for _, ev := range resp.Kvs {
@@ -45,7 +45,7 @@ func GetConfFromEtcd(key string) (logentry []*LogEntry,err error) {
 		// 对取取到的配置文件进行反序列话
 		err = json.Unmarshal(ev.Value,&logentry)
 		if err != nil {
-			fmt.Println("Unmarshal failed for etcd value")
+			logger.SugarLogger.Errorf("Unmarshal failed for etcd value. err:%s",err)
 			return
 		}
 	}
@@ -57,7 +57,7 @@ func WatchConfFromEtcd(key string, newConfChan chan<- []*LogEntry){
 	rch := cli.Watch(context.Background(), key) // <-chan WatchResponse
 	for wresp := range rch {
 		for _, ev := range wresp.Events {
-			fmt.Printf("Type: %s Key:%s Value:%s\n", ev.Type, ev.Kv.Key, ev.Kv.Value)
+			//fmt.Printf("Type: %s Key:%s Value:%s\n", ev.Type, ev.Kv.Key, ev.Kv.Value)
 			// 如果配置文件变了，就通知tailLog
 			// 先解析新的配置文件
 			var newConf []*LogEntry
@@ -65,7 +65,7 @@ func WatchConfFromEtcd(key string, newConfChan chan<- []*LogEntry){
 			if ev.Type != clientv3.EventTypeDelete{
 				err:=json.Unmarshal(ev.Kv.Value,&newConf)
 				if err != nil {
-					fmt.Println("new conf unmarshal failed, err:",err)
+					logger.SugarLogger.Errorf("new conf unmarshal failed, err:%s",err)
 					continue
 				}
 			}
