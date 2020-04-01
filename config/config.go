@@ -15,7 +15,7 @@ type EtcdConfig struct {
 
 // TailLog 定义TailLog结构体
 type TailLogConfig struct {
-	FileName string `ini:"filename"`
+	CollectLogInfo string `ini:"collect_log_info"`
 }
 
 // LogConfig 定义LogConfig结构体

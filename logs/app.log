@@ -1,1 +1,70 @@
 2020-03-31T20:11:09.436+0800	INFO	go-logAgent/main.go:51	init kafka success
+2020-04-01T12:44:34.539+0800	INFO	go-logAgent/main.go:50	init kafka success
+2020-04-01T12:44:34.545+0800	INFO	go-logAgent/main.go:57	init etcd success
+2020-04-01T12:44:34.770+0800	INFO	go-logAgent/main.go:65	get config from etcd success.
+2020-04-01T12:44:34.770+0800	INFO	go-logAgent/main.go:73	init tailLog success
+2020-04-01T12:48:39.306+0800	INFO	go-logAgent/main.go:50	init kafka success
+2020-04-01T12:48:39.310+0800	INFO	go-logAgent/main.go:57	init etcd success
+2020-04-01T12:48:39.441+0800	INFO	go-logAgent/main.go:65	get config from etcd success.
+2020-04-01T12:48:39.442+0800	INFO	go-logAgent/main.go:73	init tailLog success
+2020-04-01T12:53:18.621+0800	INFO	go-logAgent/main.go:50	init kafka success
+2020-04-01T12:53:18.627+0800	INFO	go-logAgent/main.go:57	init etcd success
+2020-04-01T12:53:18.790+0800	INFO	go-logAgent/main.go:65	get config from etcd success.
+2020-04-01T12:53:18.790+0800	INFO	go-logAgent/main.go:73	init tailLog success
+2020-04-01T12:54:22.219+0800	INFO	go-logAgent/main.go:50	init kafka success
+2020-04-01T12:54:22.223+0800	INFO	go-logAgent/main.go:57	init etcd success
+2020-04-01T12:54:22.462+0800	INFO	go-logAgent/main.go:65	get config from etcd success.
+2020-04-01T12:54:22.462+0800	INFO	go-logAgent/main.go:73	init tailLog success
+2020-04-01T12:59:30.792+0800	INFO	go-logAgent/main.go:50	init kafka success
+2020-04-01T12:59:30.797+0800	INFO	go-logAgent/main.go:57	init etcd success
+2020-04-01T12:59:31.003+0800	INFO	go-logAgent/main.go:65	get config from etcd success.
+2020-04-01T12:59:31.003+0800	INFO	go-logAgent/main.go:73	init tailLog success
+2020-04-01T13:12:03.152+0800	INFO	go-logAgent/main.go:50	init kafka success
+2020-04-01T13:12:03.173+0800	INFO	go-logAgent/main.go:57	init etcd success
+2020-04-01T13:12:03.314+0800	INFO	go-logAgent/main.go:65	get config from etcd success.
+2020-04-01T13:12:03.314+0800	INFO	go-logAgent/main.go:73	init tailLog success
+2020-04-01T13:15:42.281+0800	INFO	go-logAgent/main.go:50	init kafka success
+2020-04-01T13:15:42.289+0800	INFO	go-logAgent/main.go:57	init etcd success
+2020-04-01T13:15:42.655+0800	INFO	go-logAgent/main.go:65	get config from etcd success.
+2020-04-01T13:15:42.655+0800	INFO	go-logAgent/main.go:73	init tailLog success
+2020-04-01T13:25:37.972+0800	INFO	go-logAgent/main.go:50	init kafka success
+2020-04-01T13:25:37.976+0800	INFO	go-logAgent/main.go:57	init etcd success
+2020-04-01T13:25:38.976+0800	ERROR	etcd/etcd.go:49	get from etcd failed, err:context deadline exceeded
+
+2020-04-01T13:25:38.976+0800	ERROR	go-logAgent/main.go:62	get config from etcd failed. err:context deadline exceeded
+2020-04-01T13:27:00.245+0800	INFO	go-logAgent/main.go:50	init kafka success
+2020-04-01T13:27:00.250+0800	INFO	go-logAgent/main.go:57	init etcd success
+2020-04-01T13:27:00.403+0800	INFO	go-logAgent/main.go:65	get config from etcd success.
+2020-04-01T13:27:00.403+0800	INFO	go-logAgent/main.go:73	init tailLog success
+2020-04-01T13:30:17.728+0800	INFO	go-logAgent/main.go:50	init kafka success
+2020-04-01T13:30:17.732+0800	INFO	go-logAgent/main.go:57	init etcd success
+2020-04-01T13:30:17.860+0800	INFO	go-logAgent/main.go:65	get config from etcd success.
+2020-04-01T13:30:17.860+0800	INFO	go-logAgent/main.go:73	init tailLog success
+2020-04-01T13:44:28.656+0800	INFO	go-logAgent/main.go:50	init kafka success
+2020-04-01T13:44:28.660+0800	INFO	go-logAgent/main.go:57	init etcd success
+2020-04-01T13:44:28.790+0800	INFO	go-logAgent/main.go:65	get config from etcd success.
+2020-04-01T13:44:28.791+0800	INFO	go-logAgent/main.go:73	init tailLog success
+2020-04-01T13:49:03.058+0800	INFO	go-logAgent/main.go:50	init kafka success
+2020-04-01T13:49:03.064+0800	INFO	go-logAgent/main.go:57	init etcd success
+2020-04-01T13:49:03.193+0800	INFO	go-logAgent/main.go:65	get config from etcd success.
+2020-04-01T13:49:03.194+0800	INFO	go-logAgent/main.go:73	init tailLog success
+2020-04-01T13:51:14.854+0800	INFO	go-logAgent/main.go:48	init kafka success
+2020-04-01T13:51:14.859+0800	INFO	go-logAgent/main.go:55	init etcd success
+2020-04-01T13:51:14.977+0800	INFO	go-logAgent/main.go:63	get config from etcd success.
+2020-04-01T13:51:14.977+0800	INFO	go-logAgent/main.go:71	init tailLog success
+2020-04-01T13:53:55.682+0800	INFO	go-logAgent/main.go:48	init kafka success
+2020-04-01T13:53:55.686+0800	INFO	go-logAgent/main.go:55	init etcd success
+2020-04-01T13:53:55.814+0800	INFO	go-logAgent/main.go:63	get config from etcd success.
+2020-04-01T13:53:55.814+0800	INFO	go-logAgent/main.go:71	init tailLog success
+2020-04-01T13:55:34.400+0800	INFO	go-logAgent/main.go:48	init kafka success
+2020-04-01T13:55:34.405+0800	INFO	go-logAgent/main.go:55	init etcd success
+2020-04-01T13:55:34.574+0800	INFO	go-logAgent/main.go:63	get config from etcd success.
+2020-04-01T13:55:34.575+0800	INFO	go-logAgent/main.go:71	init tailLog success
+2020-04-01T13:57:49.053+0800	INFO	go-logAgent/main.go:48	init kafka success
+2020-04-01T13:57:49.062+0800	INFO	go-logAgent/main.go:55	init etcd success
+2020-04-01T13:57:49.191+0800	INFO	go-logAgent/main.go:63	get config from etcd success.
+2020-04-01T13:57:49.191+0800	INFO	go-logAgent/main.go:71	init tailLog success
+2020-04-01T13:59:01.058+0800	INFO	go-logAgent/main.go:48	init kafka success
+2020-04-01T13:59:01.063+0800	INFO	go-logAgent/main.go:55	init etcd success
+2020-04-01T13:59:01.186+0800	INFO	go-logAgent/main.go:63	get config from etcd success.
+2020-04-01T13:59:01.187+0800	INFO	go-logAgent/main.go:71	init tailLog success

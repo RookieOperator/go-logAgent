@@ -17,7 +17,6 @@ import (
 	"code.rookieops.com/coolops/logAgent/logger"
 	"code.rookieops.com/coolops/logAgent/tailLog"
 	"fmt"
-	"go.uber.org/zap"
 	"gopkg.in/ini.v1"
 	"sync"
 )
@@ -26,7 +25,6 @@ import (
 var (
 	cfg = new(config.AppConfig)
 	err error
-	sugarLogger *zap.SugaredLogger
 )
 
 // 程序入口
@@ -50,7 +48,7 @@ func main() {
 	logger.SugarLogger.Info("init kafka success")
 
 	// 3、初始化etcd
-	err = etcd.InitEtcd([]string{cfg.EtcdConfig.Address})
+	err = etcd.InitEtcd(cfg.EtcdConfig.Address)
 	if err != nil {
 		panic(err)
 	}

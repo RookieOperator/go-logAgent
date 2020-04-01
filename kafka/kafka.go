@@ -31,12 +31,12 @@ func SendToChan(topic, data string) {
 // InitKafka kafka初始化函数
 func InitKafka(address string, maxSize int) (err error) {
 	// 对配置文件中的地址进行转换
-	var kafkaAddress = make([]string,0)
-	if strings.Contains(address,";"){
-		kafkaAddress = strings.Split(address,";")
+	var kafkaAddress = make([]string, 0)
+	if strings.Contains(address, ";") {
+		kafkaAddress = strings.Split(address, ";")
+	} else {
+		kafkaAddress = append(kafkaAddress, address)
 	}
-	kafkaAddress = append(kafkaAddress,address)
-
 	config := sarama.NewConfig()
 	config.Producer.RequiredAcks = sarama.WaitForAll          // 发送完数据需要leader和follow都确认
 	config.Producer.Partitioner = sarama.NewRandomPartitioner // 新选出一个partition
@@ -71,7 +71,7 @@ func sendMsgToKafka() {
 				logger.SugarLogger.Errorf("send msg failed, err:%s", err)
 				return
 			}
-			logger.SugarLogger.Infof("send msg to kafka success. pid:%v offset:%v\n",pid, offset)
+			logger.SugarLogger.Infof("send msg to kafka success. pid:%v offset:%v\n", pid, offset)
 		default:
 			time.Sleep(time.Millisecond * 50)
 		}

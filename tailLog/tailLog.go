@@ -39,7 +39,7 @@ func NewTailTask(path, topic string) (tailObj *TailTask, err error) {
 }
 
 // 创建一个init()方法
-func (t TailTask) init() (err error) {
+func (t *TailTask) init() (err error) {
 	t.instance, err = tail.TailFile(t.path, tail.Config{
 		ReOpen:    true,
 		Follow:    true,
@@ -57,7 +57,7 @@ func (t TailTask) init() (err error) {
 }
 
 // 创建一个run方法，用于获取日志发送到Kafka
-func (t TailTask) run() {
+func (t *TailTask) run() {
 	for {
 		select {
 		case <- t.ctx.Done():

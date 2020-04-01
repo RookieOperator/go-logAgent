@@ -16,8 +16,6 @@ type tailTaskMgr struct {
 	newConfChan chan []*etcd.LogEntry
 	// 定义一个map，用来存放
 	taskMap map[string]*TailTask
-
-
 }
 
 // 每创建一个任务，就初始化一下，方便 热更新
@@ -47,7 +45,7 @@ func Init(logEntry []*etcd.LogEntry) (err error) {
 }
 
 // 新增一个run方法来时刻监听channel变化，如果变化了，取channel中的值进行操作
-func (t tailTaskMgr) run() {
+func (t *tailTaskMgr) run() {
 	// 循环监听
 	for {
 		select {
@@ -60,12 +58,12 @@ func (t tailTaskMgr) run() {
 				if !ok {
 					tailObj, err := NewTailTask(conf.Path, conf.Topic)
 					if err != nil {
-						return
+						fmt.Println(err)
 					}
-					// 将每次的taiObj都存入map
+					// 将每次的taiObj都存入map，将path和topic组合作为键值
 					mKey := fmt.Sprintf("%s_%s", conf.Path, conf.Topic)
 					t.taskMap[mKey] = tailObj
-					fmt.Printf("start new task %s_%s\n", conf.Path,conf.Topic)
+					fmt.Println("新增日志收集")
 				}
 			}
 			// 对比新旧配置文件，结束已经删除配置文件的goroutine
@@ -84,9 +82,12 @@ func (t tailTaskMgr) run() {
 				if isDelete {
 					mKey := fmt.Sprintf("%s_%s", c1.Path, c1.Topic)
 					fmt.Printf("mKey: %s",mKey)
+					fmt.Printf("t.taskMap[%s]: %v\n",mKey,t.taskMap[mKey])
 					t.taskMap[mKey].ctxCancelFunc()
+					delete(t.taskMap,mKey)
 				}
 			}
+			t.logEntry = newConf
 		default:
 			time.Sleep(time.Millisecond*50)
 		}
